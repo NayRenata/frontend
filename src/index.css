@@ -1,3 +1,10 @@
+/* Importando os estilos base do Tailwind */
 @tailwind base;
+
+/* Importando os componentes do Tailwind */
 @tailwind components;
+
+/* Importando as utilitárias do Tailwind */
 @tailwind utilities;
+
+/* Você pode adicionar estilos personalizados aqui */

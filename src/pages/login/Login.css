@@ -1,8 +1,18 @@
-.fundoLogin {
-    background-image: url("https://i.imgur.com/ZZFAmzo.jpg");
-    background-repeat: no-repeat;
-    min-height: 100vh;
-    width: 100%;
-    background-size: cover;
-    background-position: center;
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;  
+    overflow: auto;
+    
 }
+
+.fundoLogin {  /* Define a classe 'fundoLogin', que pode ser aplicada a qualquer elemento HTML */
+    background-image:  url("../../assets/download.jfif");  /* Define a URL da imagem de fundo. Neste caso, a imagem é carregada de um link externo */
+    background-repeat: no-repeat;  /* Impede que a imagem de fundo se repita. A imagem será exibida uma vez apenas */
+    min-height: 100vh;  /* Define a altura mínima do elemento como 100% da altura da janela de visualização (viewport) */
+    width: 100%;  /* Define a largura do elemento como 100% da largura disponível */
+    background-size: 95%;  /* Faz com que a imagem de fundo cubra completamente a área do elemento, preservando sua proporção */
+    background-position: center;  /* Centraliza a imagem de fundo dentro do elemento */
+}
+
+

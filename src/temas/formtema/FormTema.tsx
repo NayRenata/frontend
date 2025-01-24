@@ -4,91 +4,86 @@ import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContex";
 import Tema from "../../models/Tema";
 import { atualizar, buscar, cadastrar } from "../../services/Service";
+import { ToastAlerta } from "../../utils/ToastAlerta";
 
 function FormTema() {
-
     const navigate = useNavigate();
-
-    const [tema, setTema] = useState<Tema>({} as Tema)
-    const [isLoading, setIsLoading] = useState<boolean>(false)
-
-    const { usuario, handleLogout } = useContext(AuthContext)
-    const token = usuario.token
-
+    const [tema, setTema] = useState<Tema>({} as Tema);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const { usuario, handleLogout } = useContext(AuthContext);
+    const token = usuario.token;
     const { id } = useParams<{ id: string }>();
 
     async function buscarPorId(id: string) {
         try {
             await buscar(`/temas/${id}`, setTema, {
                 headers: { Authorization: token }
-            })
+            });
         } catch (error: any) {
             if (error.toString().includes('403')) {
-                handleLogout()
+                handleLogout();
             }
         }
     }
 
     useEffect(() => {
         if (token === '') {
-            alert('Você precisa estar logado!')
-            navigate('/')
+           ToastAlerta('Você precisa estar logado!','info');
+            navigate('/');
         }
-    }, [token])
+    }, [token]);
 
     useEffect(() => {
         if (id !== undefined) {
-            buscarPorId(id)
+            buscarPorId(id);
         }
-    }, [id])
+    }, [id]);
 
     function atualizarEstado(e: ChangeEvent<HTMLInputElement>) {
         setTema({
             ...tema,
             [e.target.name]: e.target.value
-        })
+        });
     }
 
     function retornar() {
-        navigate("/temas")
+        navigate("/temas");
     }
 
     async function gerarNovoTema(e: ChangeEvent<HTMLFormElement>) {
-        e.preventDefault()
-        setIsLoading(true)
+        e.preventDefault();
+        setIsLoading(true);
 
         if (id !== undefined) {
             try {
                 await atualizar(`/temas`, tema, setTema, {
                     headers: { 'Authorization': token }
-                })
-                alert('O Tema foi atualizado com sucesso!')
+                });
+                ToastAlerta('O Tema foi atualizado com sucesso!','sucess');
             } catch (error: any) {
                 if (error.toString().includes('403')) {
                     handleLogout();
                 } else {
-                    alert('Erro ao atualizar o tema.')
+                    ToastAlerta('Erro ao atualizar o tema.','error');
                 }
-
             }
         } else {
             try {
                 await cadastrar(`/temas`, tema, setTema, {
                     headers: { 'Authorization': token }
-                })
-                alert('O Tema foi cadastrado com sucesso!')
+                });
+                ToastAlerta('O Tema foi cadastrado com sucesso!','sucess');
             } catch (error: any) {
                 if (error.toString().includes('403')) {
                     handleLogout();
                 } else {
-                    alert('Erro ao cadastrar o tema.')
+                    ToastAlerta('Erro ao cadastrar o tema.','error');
                 }
-
             }
         }
 
-        setIsLoading(false)
-        retornar()
+        setIsLoading(false);
+        retornar();
     }
 
     return (
@@ -113,16 +108,15 @@ function FormTema() {
                     className="rounded text-slate-100 bg-indigo-400 
                                hover:bg-indigo-800 w-1/2 py-2 mx-auto flex justify-center"
                     type="submit">
-                    {isLoading ?
+                    {isLoading ? 
                         <RotatingLines
                             strokeColor="white"
                             strokeWidth="5"
                             animationDuration="0.75"
                             width="24"
                             visible={true}
-                        /> :
+                        /> : 
                         <span>{id === undefined ? 'Cadastrar' : 'Atualizar'}</span>
-
                     }
                 </button>
             </form>
