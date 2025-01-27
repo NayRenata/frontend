@@ -7,7 +7,7 @@ import Cadastro from './pages/cadastro/Cadastro'; // Página de cadastro
 import './App.css'; // Arquivo de estilo global
 import Login from './pages/login/Login'; // Página de login
 import { AuthProvider } from './context/AuthContex'; // Contexto para autenticação
-import ListaTemas from '../../blogpessoal/src/temas/listatemas/ListaTemas'; // Página de lista de temas
+
 import FormTema from './temas/formtema/FormTema'; // Página de formulário para criação/edição de temas
 import DeletarTema from './temas/deletartema/DeletarTema'; // Página de deletação de temas
 import ListaPostagens from './components/postagens/listapostagens/ListaPostagens';
@@ -16,6 +16,7 @@ import DeletarPostagem from './components/postagens/deletarpostagem/DeletarPosta
 import Perfil from './pages/perfil/Perfil';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
+import ListaTemas from './temas/listatemas/ListaTemas';
 
 
 // Componente principal que organiza as rotas e exibe a estrutura da aplicação

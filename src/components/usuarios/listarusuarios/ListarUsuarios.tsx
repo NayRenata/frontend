@@ -1,5 +1,6 @@
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+
 import axios from 'axios'; // Importa o Axios para fazer a requisição HTTP
+import { useEffect, useState } from 'react';
 
 // Interface que define a estrutura dos usuários.
 interface Usuario {
